@@ -4,6 +4,7 @@
     margin: 2px;
     position: relative;
 }
+
 .async-image span {
     width: inherit;
     height: inherit;
@@ -60,7 +61,7 @@
 }
 
 .async-image .spinner div {
-    background-image: url("/assets/preloader.png");
+    background-image: url("/assets/preloader.gif");
 }
 
 .async-image .error div {

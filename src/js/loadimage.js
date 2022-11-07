@@ -8,7 +8,7 @@
 
    const HTML = `<div class='status' ></div> <span class="img" ></span>`;
 
-   class AsyncImage {
+   class LoadImage {
 	 static queue = [];			
 	 static workers = 0;
 	 attr = {};
@@ -32,26 +32,26 @@
 		var x = 	this.attr.href ? `<a href='${this.attr.href}' target="_blank"><img /></a>` : `<img />`
 		this.elem.find('span.img').html(x);	
 
-		AsyncImage.show.loading(this.elem);			
+		LoadImage.show.loading(this.elem);			
 
-		AsyncImage.add({current: this.elem, src:this.attr.src});
+		LoadImage.add({current: this.elem, src:this.attr.src});
      }
 
 
 	
 	static async add(obj){
 		
-		AsyncImage.queue.push(obj);
+		LoadImage.queue.push(obj);
 
-		if(AsyncImage.workers < 4){ 
-			AsyncImage.workers++;
-			setTimeout(AsyncImage.initWorker)
+		if(LoadImage.workers < 4){ 
+			LoadImage.workers++;
+			setTimeout(LoadImage.initWorker)
 		}
 	}
 	
 	static async initWorker() {	
-		while(AsyncImage.queue.length>0) await AsyncImage.process();		
-		AsyncImage.workers--;		 
+		while(LoadImage.queue.length>0) await LoadImage.process();		
+		LoadImage.workers--;		 
 	}
 	
 	static show = {
@@ -68,18 +68,18 @@
 		
 		return  new Promise(resolve => {
 			
-			var item = AsyncImage.queue.shift();
+			var item = LoadImage.queue.shift();
 
 			var img = new Image();
 			img.src = item.src;
 				
 			img.onload = function(){	
-				AsyncImage.show.image(item.current, this.src);		
+				LoadImage.show.image(item.current, this.src);		
 				resolve();
 			}	
 			
 			img.onerror = function(){
-				AsyncImage.show.error(item.current);
+				LoadImage.show.error(item.current);
 				resolve();
 			}				
 		});
@@ -93,8 +93,8 @@
 
 
 
- $.fn.asyncimage = function(opts){
-	return new AsyncImage(this, opts);
+ $.fn.loadimage = function(opts){
+	return new LoadImage(this, opts);
 }
 
 
