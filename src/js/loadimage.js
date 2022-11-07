@@ -80,7 +80,7 @@
 	
 	static process(){
 		
-		return  new Promise((resolve, reject) => {
+		return  new Promise(resolve => {
 			
 			var item = AsyncImage.queue.shift();
 
