@@ -1,17 +1,5 @@
 
-.photo {
-	float:right;
-	margin-left: 5px!important;
-}
 
-
-
-.gallery_item img{
-	opacity: .7;
-	transition: opacity .4s;
-	
-	&:hover {	opacity:1; }
-}
 
 .async-image {
 	display: inline-block;
@@ -22,7 +10,8 @@
 	span {
 		width:inherit;
 		height:inherit;
-	    img{
+		
+	    img {
 			width:inherit;
 			height:inherit;
 		}		
@@ -36,19 +25,15 @@
 	}	
 
 	.status {
-		
-		xxpadding-top: 10px;
     	text-align: center;
     	position:absolute;  
 	    left: 0;
 	    right: 0;
 	    top: 0;
-	    bottom: 0;    	
-    	
+	    bottom: 0;    	   	
 	}
 
 	.spinner, .error {
-
 		position: absolute;
 		top:0; bottom:0; left: 0; right: 0;
 		background: white;
@@ -67,10 +52,13 @@
 			height: 32px;
 			width: 32px;		
 			background-color: white;
-			background-image: url('/assets/preloader.gif') ;
 			background-repeat: no-repeat;
 		}
 	}
+
+	.spinner div {
+		background-image: url('/assets/preloader.png') ;
+	} 
 	
 	.error div {
 		background-image: url('/assets/error.png') ;
