@@ -1,26 +1,18 @@
 
 
-
-
    var defaults = {
       height: "50px",
       width:"50px",
       href:""
    };
 
-   const HTML = `
-   						<div class='status' ></div> 
-   						<span class="img" ></span>
-   				`;
+   const HTML = `<div class='status' ></div> <span class="img" ></span>`;
 
    class AsyncImage {
 	 static queue = [];			
 	 static workers = 0;
 	 attr = {};
 	 opts = null;
-
-
-	
 
      constructor(elem, opts) {
 		this.elem = elem;
@@ -32,21 +24,15 @@
 			width: this.elem.attr('width')
 		}
 
-
 		this.elem[0].style.height = this.attr.height;
 		this.elem[0].style.width  = this.attr.width;	
 		
 		this.elem.addClass('async-image').html(HTML);
-			
-			
-			
+		
 		var x = 	this.attr.href ? `<a href='${this.attr.href}' target="_blank"><img /></a>` : `<img />`
 		this.elem.find('span.img').html(x);	
 
-		
-		
 		AsyncImage.show.loading(this.elem);			
-
 
 		AsyncImage.add({current: this.elem, src:this.attr.src});
      }
