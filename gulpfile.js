@@ -53,7 +53,8 @@ function build_css(cb) {
         .pipe(gulp.dest(DEST_CSS));
 
  
-  gulp.src(['src/assets/*']).pipe(gulp.dest('dist/assets'))
+   gulp.src(['src/assets/*']).pipe(gulp.dest('dist/assets'));
+   gulp.src(['src/pictures/*']).pipe(gulp.dest('dist/pictures'))
 
   cb();
 }

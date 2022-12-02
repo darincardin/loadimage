@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Made with create-jquery-plugin",
   "homepage": "",
-  "main": "dist/js/loadimage.min.js",
+  "main": "dist/js/asyncimage.min.js",
   "license": "MIT",
   "author": "Darin Cardin <darinjaycardin@gmail.com>",
   "repository": "",

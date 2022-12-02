@@ -1,7 +1,7 @@
 
 
 
-.async-image {
+.loadimage {
 	display: inline-block;
 	border: 1px solid #cbcbcb;
 	margin: 2px;
@@ -39,7 +39,6 @@
 		background: white;
 		display: block;
 		opacity:1;
-		xxtransition: opacity .1s;
 		z-index: 1;
 
 		&.hide { opacity:0; }
