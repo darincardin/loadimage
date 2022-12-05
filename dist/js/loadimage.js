@@ -9,33 +9,41 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 var defaults = {
-  height: "50px",
-  width: "50px",
-  href: ""
+  processLimit: 4
 };
 var HTML = "\n   \t\t\t\t\t\t<div class='status' ></div> \n   \t\t\t\t\t\t<span class=\"img\" ></span>\n   \t\t\t\t";
 var LoadImage = /*#__PURE__*/function () {
   function LoadImage(elem, opts) {
     _classCallCheck(this, LoadImage);
     _defineProperty(this, "attr", {});
-    _defineProperty(this, "opts", null);
-    this.elem = elem;
-    this.attr = {
-      src: this.elem.attr('src'),
-      href: this.elem.attr('href'),
-      height: this.elem.attr('height'),
-      width: this.elem.attr('width')
-    };
-    this.elem[0].style.height = this.attr.height;
-    this.elem[0].style.width = this.attr.width;
-    this.elem.addClass('async-image').html(HTML);
-    var x = this.attr.href ? "<a href='".concat(this.attr.href, "' target=\"_blank\"><img /></a>") : "<img />";
-    this.elem.find('span.img').html(x);
-    LoadImage.show.loading(this.elem);
-    LoadImage.add({
-      current: this.elem,
-      src: this.attr.src
-    });
+    if (elem.length > 1) {
+      //if elem is an array
+
+      elem.each(function (e) {
+        new LoadImage($(this), opts);
+      });
+    } else {
+      //if elem is an object
+
+      this.elem = elem;
+      LoadImage.props = $.extend(true, {}, defaults, opts);
+      this.attr = {
+        src: this.elem.attr('src'),
+        href: this.elem.attr('href'),
+        height: this.elem.attr('height'),
+        width: this.elem.attr('width')
+      };
+      this.elem[0].style.height = this.attr.height;
+      this.elem[0].style.width = this.attr.width;
+      this.elem.addClass('async-image').html(HTML);
+      var x = this.attr.href ? "<a href='".concat(this.attr.href, "' target=\"_blank\"><img /></a>") : "<img />";
+      this.elem.find('span.img').html(x);
+      LoadImage.show.loading(this.elem);
+      LoadImage.add({
+        current: this.elem,
+        src: this.attr.src
+      });
+    }
   }
   _createClass(LoadImage, null, [{
     key: "add",
@@ -46,7 +54,7 @@ var LoadImage = /*#__PURE__*/function () {
             switch (_context.prev = _context.next) {
               case 0:
                 LoadImage.queue.push(obj);
-                if (LoadImage.workers < 4) {
+                if (LoadImage.workers < LoadImage.props.processLimit) {
                   LoadImage.workers++;
                   setTimeout(LoadImage.initWorker);
                 }
@@ -115,6 +123,7 @@ var LoadImage = /*#__PURE__*/function () {
 }();
 _defineProperty(LoadImage, "queue", []);
 _defineProperty(LoadImage, "workers", 0);
+_defineProperty(LoadImage, "props", null);
 _defineProperty(LoadImage, "show", {
   error: function error(elem) {
     $(elem).find('.status').html('<div class="error"><div /></div>');

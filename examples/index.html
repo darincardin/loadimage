@@ -24,41 +24,21 @@
     <section class="container">
         <div class="row">
             <div class="col-md-8">
-               
-                       
-				 <div width="75px" height="59px" class="loadimage" src="../image.php?img=example.jpg"></div>
-				 
-				 <!--  
-				 <div width="75px" height="59px" class="loadimage" src="../image.php?img=birds.jpg"></div>
-				 <div width="75px" height="59px" class="loadimage" src="../image.php?img=birds2.jpg"></div>
-				 <div width="75px" height="59px" class="loadimage" src="../image.php?img=cat.jpg"></div>
-				 <div width="75px" height="59px" class="loadimage" src="../image.php?img=duck.jpg"></div>
-				 <div width="75px" height="59px" class="loadimage" src="../image.php?img=gator.jpg"></div>
-				 <div width="75px" height="59px" class="loadimage" src="../image.php?img=hawk.jpg"></div>
-				 <div width="75px" height="59px" class="loadimage" src="../image.php?img=lily1.jpg"></div>
-				 <div width="75px" height="59px" class="loadimage" src="../image.php?img=lily2.jpg"></div>
-				 <div width="75px" height="59px" class="loadimage" src="../image.php?img=lily3.jpg"></div>
-				 <div width="75px" height="59px" class="loadimage" src="../image.php?img=lily4.jpg"></div>
-				 <div width="75px" height="59px" class="loadimage" src="../image.php?img=lily5.jpg"></div>
-				 <div width="75px" height="59px" class="loadimage" src="../image.php?img=lizard.jpg"></div>
-				 <div width="75px" height="59px" class="loadimage" src="../image.php?img=moon.jpg"></div>
-				 <div width="75px" height="59px" class="loadimage" src="../image.php?img=mountains.jpg"></div>
-				 <div width="75px" height="59px" class="loadimage" src="../image.php?img=pink1.jpg"></div>
-				 <div width="75px" height="59px" class="loadimage" src="../image.php?img=pink3.jpg"></div>
-				 <div width="75px" height="59px" class="loadimage" src="../image.php?img=rabbit.jpg"></div>
-				 <div width="75px" height="59px" class="loadimage" src="../image.php?img=red1.jpg"></div>
-				 <div width="75px" height="59px" class="loadimage" src="../image.php?img=rocks.jpg"></div>
-				 <div width="75px" height="59px" class="loadimage" src="../image.php?img=sea.jpg"></div>
-				 <div width="75px" height="59px" class="loadimage" src="../image.php?img=stork.jpg"></div>
-				 <div width="75px" height="59px" class="loadimage" src="../image.php?img=street.jpg"></div>
-				 <div width="75px" height="59px" class="loadimage" src="../image.php?img=suncactus.jpg"></div>
-				 <div width="75px" height="59px" class="loadimage" src="../image.php?img=sunset.jpg"></div>
-				 <div width="75px" height="59px" class="loadimage" src="../image.php?img=sunset2.jpg"></div>
-				 <div width="75px" height="59px" class="loadimage" src="../image.php?img=vegas.jpg"></div>
-				 <div width="75px" height="59px" class="loadimage" src="../image.php?img=yellow1.jpg"></div>
-				 <div width="75px" height="59px" class="loadimage" src="../image.php?img=yellow2.jpg"></div>
-				 <div width="75px" height="59px" class="loadimage" src="../image.php?img=yucca.jpg"></div>
-				    -->
+       
+				 <div width="75px" height="59px" class="loadimage" src="/photos/bird.jpg" > </div>			   
+				 <div width="75px" height="59px" class="loadimage" src="/photos/birds.jpg" > </div>
+				 <div width="75px" height="59px" class="loadimage" src="/photos/birds2.jpg" > </div>
+				 <div width="75px" height="59px" class="loadimage" src="/photos/cat.jpg" > </div>
+				 <div width="75px" height="59px" class="loadimage" src="/photos/duck.jpg" > </div>
+				 <div width="75px" height="59px" class="loadimage" src="/photos/gator.jpg" > </div>
+				 <div width="75px" height="59px" class="loadimage" src="/photos/hawk.jpg" > </div>
+				 <div width="75px" height="59px" class="loadimage" src="/photos/lily1.jpg" > </div>
+				 <div width="75px" height="59px" class="loadimage" src="/photos/lily2.jpg" > </div>
+				 <div width="75px" height="59px" class="loadimage" src="/photos/lily3.jpg" > </div>
+				 <div width="75px" height="59px" class="loadimage" src="/photos/lily4.jpg" > </div>
+				 <div width="75px" height="59px" class="loadimage" src="/photos/lily5.jpg" > </div>
+				 <div width="75px" height="59px" class="loadimage" src="/photos/lizard.jpg" > </div>
+
             </div>
         </div>
     </section>
@@ -77,10 +57,12 @@
 
     <script type="text/javascript">
    
+    	
+	$('.loadimage').loadimage({processLimit:2});
     
-    	$('.loadimage').each(function(elem){
-    		$(this).loadimage();
-    	});
+   // 	$('.loadimage').each(function(elem){
+    //		$(this).loadimage({processLimit:2});
+   // 	});
     	
   
 var arr = ['example.jpg',     'birds.jpg','birds2.jpg', 'cat.jpg', 'duck.jpg', 'gator.jpg', 'hawk.jpg', 
@@ -91,7 +73,7 @@ var arr = ['example.jpg',     'birds.jpg','birds2.jpg', 'cat.jpg', 'duck.jpg', '
 
 //	arr.forEach(function(v){
 
-	   // console.log('<div width="75px" height="59px" class="loadimage" src="../image.php?img=' + v + '"></div>');
+	   // console.log('<div width="75px" height="59px" class="loadimage" src="assets/' + v + '" > </div>');
 	    
 		
 //	});

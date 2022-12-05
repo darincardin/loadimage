@@ -2,9 +2,7 @@
 
 
    var defaults = {
-      height: "50px",
-      width:"50px",
-      href:""
+      processLimit:4
    };
 
    const HTML = `
@@ -15,39 +13,53 @@
    class LoadImage {
 	 static queue = [];			
 	 static workers = 0;
-	 attr = {};
-	 opts = null;
+	 static props = null;
 
+	 attr = {};
+	
 
 	
 
      constructor(elem, opts) {
-		this.elem = elem;
-		
-		this.attr = {
-			src: this.elem.attr('src'),
-			href: this.elem.attr('href'),
-			height: this.elem.attr('height'),
-			width: this.elem.attr('width')
+	
+		if(elem.length > 1){  //if elem is an array
+
+			elem.each(function(e){
+				new LoadImage($(this), opts);
+				
+			})	
 		}
-
-
-		this.elem[0].style.height = this.attr.height;
-		this.elem[0].style.width  = this.attr.width;	
+		else { //if elem is an object
 		
-		this.elem.addClass('async-image').html(HTML);
+			this.elem = elem;
+			
+			LoadImage.props = $.extend(true, {}, defaults, opts);
 			
 			
+			this.attr = {
+				src: this.elem.attr('src'),
+				href: this.elem.attr('href'),
+				height: this.elem.attr('height'),
+				width: this.elem.attr('width')
+			}
+	
+			this.elem[0].style.height = this.attr.height;
+			this.elem[0].style.width  = this.attr.width;	
 			
-		var x = 	this.attr.href ? `<a href='${this.attr.href}' target="_blank"><img /></a>` : `<img />`
-		this.elem.find('span.img').html(x);	
-
-		
-		
-		LoadImage.show.loading(this.elem);			
-
-
-		LoadImage.add({current: this.elem, src:this.attr.src});
+			this.elem.addClass('async-image').html(HTML);
+			
+				
+				
+			var x = 	this.attr.href ? `<a href='${this.attr.href}' target="_blank"><img /></a>` : `<img />`
+			this.elem.find('span.img').html(x);	
+	
+			
+			
+			LoadImage.show.loading(this.elem);			
+	
+	
+			LoadImage.add({current: this.elem, src:this.attr.src});
+		}
      }
 
 
@@ -56,7 +68,7 @@
 		
 		LoadImage.queue.push(obj);
 
-		if(LoadImage.workers < 4){ 
+		if(LoadImage.workers < LoadImage.props.processLimit){ 
 			LoadImage.workers++;
 			setTimeout(LoadImage.initWorker)
 		}
